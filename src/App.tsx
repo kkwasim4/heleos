@@ -203,7 +203,7 @@ export default function App() {
         console.error("Usage count update failed", e);
       }
 
-      const aiStream = await getGeminiResponse(normalizedContent, history.slice(0, -1) as any, image, temperature);
+      const stream = await getGeminiResponse(normalizedContent, history.slice(0, -1) as any, image, temperature);
       
       const assistantMessage: Message = {
         id: crypto.randomUUID(),
@@ -221,8 +221,8 @@ export default function App() {
       }));
 
       let fullContent = '';
-      for await (const chunk of aiStream.stream) {
-        const text = chunk.text() || '';
+      for await (const chunk of stream) {
+        const text = chunk.text || '';
         fullContent += text;
         
         setThreads(prev => prev.map(t => {
