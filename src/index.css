@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-background: #0a0a0a;
+  --color-foreground: #e5e5e5;
+  --color-accent: #f97316;
+  --color-border: #222222;
+  --color-muted: #121212;
+  --color-muted-foreground: #888888;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    @apply font-sans antialiased;
+  }
+}
+
+@layer components {
+  .chat-bubble-user {
+    @apply border-none bg-transparent text-foreground text-sm leading-relaxed;
+  }
+
+  .chat-bubble-ai {
+    @apply w-full text-foreground/90 text-sm leading-relaxed;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg transition-colors cursor-pointer hover:bg-muted text-sm text-muted-foreground hover:text-foreground;
+  }
+
+  .input-container {
+    @apply relative flex items-center bg-[#141414] border border-border rounded-xl focus-within:border-accent/50 transition-all p-1;
+  }
+
+  .accent-button {
+    @apply bg-accent hover:bg-accent/90 text-white font-medium p-2 rounded-lg transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Markdown custom styles */
+  .prose-dark {
+    @apply text-foreground/90;
+  }
+
+  .prose-dark pre {
+    @apply bg-[#141414] border border-border p-4 rounded-lg my-4 overflow-x-auto;
+  }
+
+  .prose-dark code {
+    @apply font-mono text-accent bg-accent/10 px-1 rounded;
+  }
+
+  .prose-dark p {
+    @apply mb-4 last:mb-0;
+  }
+
+  .prose-dark ul, .prose-dark ol {
+    @apply ml-4 mb-4 list-disc;
+  }
+
+  .prose-dark h1, .prose-dark h2, .prose-dark h3 {
+    @apply font-semibold text-foreground mb-4;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
+}
