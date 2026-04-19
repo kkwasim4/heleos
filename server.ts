@@ -2,7 +2,7 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
-import { MoneroRPCService } from "./src/MoneroRPC/moneroService";
+import { MoneroRPCService } from "./src/MoneroRPC/moneroService.ts";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const __filename = fileURLToPath(import.meta.url);
